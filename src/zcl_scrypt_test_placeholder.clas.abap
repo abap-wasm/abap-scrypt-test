@@ -2,25 +2,31 @@ CLASS zcl_scrypt_test_placeholder DEFINITION PUBLIC.
   PUBLIC SECTION.
     INTERFACES zif_wasm_module.
     METHODS constructor.
+  PROTECTED SECTION.
   PRIVATE SECTION.
     DATA mt_functions TYPE STANDARD TABLE OF string WITH EMPTY KEY.
 ENDCLASS.
 
-CLASS zcl_scrypt_test_placeholder IMPLEMENTATION.
+
+
+CLASS ZCL_SCRYPT_TEST_PLACEHOLDER IMPLEMENTATION.
+
 
   METHOD constructor.
-    INSERT '__wbg_error_f851667af71bcfc6' INTO TABLE mt_functions.
-    INSERT '__wbg_new_abda76e883ba8a5f' INTO TABLE mt_functions.
-    INSERT '__wbg_stack_658279fe44541cf6' INTO TABLE mt_functions.
-    INSERT '__wbindgen_object_drop_ref' INTO TABLE mt_functions.
-    INSERT '__wbindgen_throw' INTO TABLE mt_functions.
+    INSERT `__wbg_error_f851667af71bcfc6` INTO TABLE mt_functions.
+    INSERT `__wbg_new_abda76e883ba8a5f` INTO TABLE mt_functions.
+    INSERT `__wbg_stack_658279fe44541cf6` INTO TABLE mt_functions.
+    INSERT `__wbindgen_object_drop_ref` INTO TABLE mt_functions.
+    INSERT `__wbindgen_throw` INTO TABLE mt_functions.
   ENDMETHOD.
+
 
   METHOD zif_wasm_module~execute_function_export.
     RAISE EXCEPTION TYPE zcx_wasm
       EXPORTING
         text = 'zcl_scrypt_test_placeholder: execute_function_export'.
   ENDMETHOD.
+
 
   METHOD zif_wasm_module~get_export_by_name.
     READ TABLE mt_functions WITH KEY table_line = iv_name INTO DATA(lv_name).
@@ -31,9 +37,6 @@ CLASS zcl_scrypt_test_placeholder IMPLEMENTATION.
     ENDIF.
   ENDMETHOD.
 
-  METHOD zif_wasm_module~instantiate.
-    ri_module ?= me.
-  ENDMETHOD.
 
   METHOD zif_wasm_module~get_memory.
     RAISE EXCEPTION TYPE zcx_wasm
@@ -41,4 +44,8 @@ CLASS zcl_scrypt_test_placeholder IMPLEMENTATION.
         text = 'zcl_scrypt_test_placeholder: get_memory'.
   ENDMETHOD.
 
+
+  METHOD zif_wasm_module~instantiate.
+    ri_module ?= me.
+  ENDMETHOD.
 ENDCLASS.
