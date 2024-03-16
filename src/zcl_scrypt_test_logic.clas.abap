@@ -7,12 +7,12 @@ ENDCLASS.
 
 
 
-CLASS ZCL_SCRYPT_TEST_LOGIC IMPLEMENTATION.
+CLASS zcl_scrypt_test_logic IMPLEMENTATION.
 
 
   METHOD run.
 
-    DATA(lv_base64) = zcl_scrypt_test_data=>get( ).
+    DATA(lv_base64) = zcl_scrypt_test_data=>get_optimized( ).
 
     DATA(li_wasm) = zcl_wasm=>create_with_base64(
       iv_base64  = lv_base64
